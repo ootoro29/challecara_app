@@ -1,0 +1,4 @@
+<!-- ログイン後のページ -->
+<h1>ログイン後の世界</h1>
+<%= link_to "log out", logout_path,data: { turbo_method: :delete } %>
+<br><%= current_user.name %>, <%= current_user.email %>

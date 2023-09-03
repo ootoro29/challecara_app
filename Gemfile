@@ -73,3 +73,4 @@ end
 
 gem 'bootstrap'
 gem 'jquery-rails'
+gem 'bcrypt'
