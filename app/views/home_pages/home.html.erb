@@ -1,4 +1,18 @@
-<!-- ログイン後のページ -->
-<h1>ログイン後の世界</h1>
-<%= link_to "log out", logout_path,data: { turbo_method: :delete } %>
-<br><%= current_user.name %>, <%= current_user.email %>
+
+
+<div class="contents">
+    <!-- サイドバー -->
+    <div class="sidebar">
+        <div><%= render 'home_pages/side' %></div>
+    </div>
+    
+    <!-- メインコンテンツ -->
+    <div class="main-content">
+        <h1>メインコンテンツ</h1>
+    </div>
+</div>
+
+
+
+
+

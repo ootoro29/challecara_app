@@ -31,12 +31,33 @@ input {
     margin-top: -10px;
     margin-bottom: 10px;
     span {
-      margin-left: 20px;
-      font-weight: normal;
+        margin-left: 20px;
+        font-weight: normal;
     }
-  }
-  
-  #session_remember_me {
+}
+
+#session_remember_me {
     width: auto;
     margin-left: 0;
-  }
+}
+
+.contents {
+    display: flex;
+    justify-content:flex-start; 
+}
+
+/* サイドバー */
+.sidebar {
+    background-color: #f0f0f0;
+    width:  250px;
+    padding-left: 10px;
+}
+
+/* メインコンテンツ */
+.main-content {
+    flex: 1; /* メインコンテンツが残りのスペースを占有 */
+    background-color: #ffffff;
+    padding-left: 10px;
+    white-space: nowrap;
+}
+  
