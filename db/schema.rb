@@ -10,7 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_12_091925) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_12_100407) do
+  create_table "administrators", force: :cascade do |t|
+    t.integer "admin_user_id", null: false
+    t.integer "admin_group_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["admin_group_id"], name: "index_administrators_on_admin_group_id"
+    t.index ["admin_user_id"], name: "index_administrators_on_admin_user_id"
+  end
+
+  create_table "admins", force: :cascade do |t|
+    t.integer "admin_user_id"
+    t.integer "admin_group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "books", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -45,6 +61,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_12_091925) do
     t.string "remember_digest"
   end
 
+  add_foreign_key "administrators", "admin_groups"
+  add_foreign_key "administrators", "admin_users"
   add_foreign_key "groups", "users"
   add_foreign_key "groups", "users", column: "administrators_id"
   add_foreign_key "groups_users", "groups"

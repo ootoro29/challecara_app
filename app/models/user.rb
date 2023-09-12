@@ -34,4 +34,7 @@ class User < ActiveRecord::Base
     end
 
     has_and_belongs_to_many :groups
+
+    has_many :admins,foreign_key: :admin_user_id
+    has_many :admin_groups ,through: :admins , source: :admin_group
   end

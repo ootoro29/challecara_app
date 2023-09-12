@@ -27,10 +27,11 @@ class GroupsController < ApplicationController
   def create
     #@group = Group.new(group_params)
     @group = current_user.groups.build(group_params)
-
     respond_to do |format|
       if @group.save
         current_user.groups << @group
+        admin_method = current_user.admins.build(admin_group_id: @group.id)
+        admin_method.save
         format.html { redirect_to group_url(@group), notice: "Group was successfully created." }
         format.json { render :show, status: :created, location: @group }
       else
@@ -55,8 +56,9 @@ class GroupsController < ApplicationController
 
   # DELETE /groups/1 or /groups/1.json
   def destroy
+    admin_method = current_user.admins.build(admin_group_id: @group.id)
+    admin_method.destroy
     @group.destroy
-
     respond_to do |format|
       format.html { redirect_to groups_url, notice: "Group was successfully destroyed." }
       format.json { head :no_content }
