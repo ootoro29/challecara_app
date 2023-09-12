@@ -2,13 +2,7 @@
 
 <%= render "form", group: @group %>
 <br>
-<h2>メンバー</h2>
-<ul>
-  <% @members.each do |user| %>
-    <li><%= user.name %></li>
-    <br>
-  <% end %>
-</ul>
+
 <div class="search_form">
   <%= form_with url: '#', local: true, method: :get do |f| %>
     <%= f.text_field :word %>

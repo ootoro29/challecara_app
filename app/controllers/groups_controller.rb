@@ -9,6 +9,7 @@ class GroupsController < ApplicationController
 
   # GET /groups/1 or /groups/1.json
   def show
+    @members = @group.users.all;
   end
 
   # GET /groups/new
@@ -18,7 +19,7 @@ class GroupsController < ApplicationController
 
   # GET /groups/1/edit
   def edit
-    @members = @group.users.all;
+    
     @users = User.all;
   end
 
