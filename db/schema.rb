@@ -27,20 +27,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_12_100407) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "books", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "groups", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.integer "administrators_id"
-    t.index ["administrators_id"], name: "index_groups_on_administrators_id"
-    t.index ["user_id"], name: "index_groups_on_user_id"
   end
 
   create_table "groups_users", force: :cascade do |t|
@@ -59,12 +49,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_12_100407) do
     t.datetime "updated_at", null: false
     t.string "password_digest"
     t.string "remember_digest"
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
-  add_foreign_key "administrators", "admin_groups"
-  add_foreign_key "administrators", "admin_users"
-  add_foreign_key "groups", "users"
-  add_foreign_key "groups", "users", column: "administrators_id"
   add_foreign_key "groups_users", "groups"
   add_foreign_key "groups_users", "users"
 end
