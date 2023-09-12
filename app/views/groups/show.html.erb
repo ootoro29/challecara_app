@@ -2,6 +2,14 @@
 
 <%= render @group %>
 
+<strong>メンバー</strong>
+<ul>
+  <% @members.each do |user| %>
+    <li><%= user.name %></li>
+    <br>
+  <% end %>
+</ul>
+
 <div>
   <%= link_to "Edit this group", edit_group_path(@group) %> |
   <%= link_to "Back to groups", groups_path %> |
