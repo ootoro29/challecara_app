@@ -32,4 +32,6 @@ class User < ActiveRecord::Base
     def forget
       update_attribute(:remember_digest, nil)
     end
+
+    has_and_belongs_to_many :groups
   end

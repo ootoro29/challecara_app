@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Groups</h1>
+
+<div id="groups">
+  <% @groups.each do |group| %>
+    <%= render group %>
+    <%= link_to "Show this group", group %>
+  <% end %>
+</div>
+<br>
+<%= link_to "New group", new_group_path %>
+<br>
+<%= link_to "Back to home", home_path %>
