@@ -18,6 +18,8 @@ class GroupsController < ApplicationController
 
   # GET /groups/1/edit
   def edit
+    @members = @group.users.all;
+    @users = User.all;
   end
 
   # POST /groups or /groups.json
