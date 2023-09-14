@@ -5,7 +5,11 @@
 <strong>メンバー</strong>
 <ul>
   <% @members.each do |user| %>
-    <li><%= user.name %></li>
+    <% if !@group.admin_users.find_by(id: user.id).nil? %>
+      <li><%= user.name+"(管理者)" %></li>
+    <% else %>
+      <li><%= user.name %></li>
+    <% end %>
     <br>
   <% end %>
 </ul>
