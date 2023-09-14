@@ -1,17 +1,27 @@
 <div class="vh-100 d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary">
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
         <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
-        <span class="fs-4"><%= link_to "グループ", groups_path ,class:"fs-4 text-dark" %></span>
         <% if !@group.nil? %>
+            <span class="fs-4"><%= link_to "グループ", groups_path(group_id: @group.id) ,class:"fs-4 text-dark" %></span>
             <p><%= @group.name %></p>
         <% else %>
+            <span class="fs-4"><%= link_to "グループ", groups_path ,class:"fs-4 text-dark" %></span>
             <p>プライベートグループ</p>
         <% end %>
         
     </a>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
-        <span class="fs-4">科目</span>
+        <% if !@group.nil? %><span class="fs-4"><%= link_to "Book", new_book_path(group_id: @group.id) ,class:"fs-4 text-dark" %></span><% end %>
+        <% if !@group.nil? %>
+            <ul>
+            <% @books.each do |book| %>
+                <li>
+                <%= link_to book.name, edit_book_path(id:book.id,group_id: @group.id) ,class:"fs-6 text-dark"%>
+                </li>
+            <% end %>
+            </ul>
+        <% end %>
     </ul>
     <hr>
     <div class="dropdown">

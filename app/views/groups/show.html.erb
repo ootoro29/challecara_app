@@ -13,7 +13,7 @@
 <div>
   <%= link_to "Edit this group", edit_group_path(@group) %> |
   <%= link_to "Back to groups", groups_path %> |
-  <%= link_to "Select this group", '/home/'+@group.id.to_s %>
+  <%= link_to "Select this group", home_path(id: @group.id) %>
   <%= button_to "Destroy this group", @group, method: :delete %>
 </div>
 

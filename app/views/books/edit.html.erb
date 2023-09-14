@@ -1,0 +1,10 @@
+<h1>Editing book</h1>
+
+<%= render "form", book: @book %>
+
+<br>
+<div>
+  <%= link_to "Destroy this book", book_path(id: @book.id, group_id: @group.id),data: { turbo_method: :delete } %>
+  <br>
+  <%= link_to "Back home", home_path(id: @group.id) %>
+</div>

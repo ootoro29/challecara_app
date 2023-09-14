@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   delete 'logout' => 'sessions#destroy'
   resources :users
   resources :groups
+  resources :books, param: :group_id
 end

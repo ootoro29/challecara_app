@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_12_100407) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_14_025508) do
   create_table "administrators", force: :cascade do |t|
     t.integer "admin_user_id", null: false
     t.integer "admin_group_id", null: false
@@ -25,6 +25,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_12_100407) do
     t.integer "admin_group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "books", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "group_id", null: false
+    t.index ["group_id"], name: "index_books_on_group_id"
   end
 
   create_table "groups", force: :cascade do |t|
@@ -52,6 +60,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_12_100407) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "administrators", "admin_groups"
+  add_foreign_key "administrators", "admin_users"
+  add_foreign_key "books", "groups"
   add_foreign_key "groups_users", "groups"
   add_foreign_key "groups_users", "users"
 end
