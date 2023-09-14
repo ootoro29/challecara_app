@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @invite %>
+
+<div>
+  <%= link_to "Edit this invite", edit_invite_path(@invite) %> |
+  <%= link_to "Back to invites", invites_path %>
+
+  <%= button_to "Destroy this invite", @invite, method: :delete %>
+</div>

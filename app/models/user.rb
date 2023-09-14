@@ -37,4 +37,7 @@ class User < ActiveRecord::Base
 
     has_many :admins,foreign_key: :admin_user_id
     has_many :admin_groups ,through: :admins , source: :admin_group
+
+    has_many :invites,foreign_key: :invite_user_id
+    has_many :invite_groups ,through: :invites , source: :invite_group
   end

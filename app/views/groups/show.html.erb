@@ -14,6 +14,8 @@
   <% end %>
 </ul>
 
+<%= render 'invites/form' , invite: @invite %>
+
 <div>
   <%= link_to "Edit this group", edit_group_path(@group) %> |
   <%= link_to "Back to groups", groups_path %> |

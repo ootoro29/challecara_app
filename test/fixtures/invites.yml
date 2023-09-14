@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  invite_user: one
+  inveite_group: one
+
+two:
+  invite_user: two
+  inveite_group: two
