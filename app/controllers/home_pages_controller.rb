@@ -5,6 +5,7 @@ class HomePagesController < ApplicationController
     if !@group.nil?
        @books = @group.books
     end
+    @invites = current_user.invites
   end
 
   private

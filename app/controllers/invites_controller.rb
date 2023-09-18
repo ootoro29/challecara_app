@@ -25,12 +25,13 @@ class InvitesController < ApplicationController
     @invite = Invite.new
     @invite.invite_user = User.find_by(id: params[:invite][:invite_user_id])
     @invite.invite_group_id = @group.id
+    @invite.create_user_id = current_user.id
     respond_to do |format|
       if @invite.save
         format.html { redirect_to invite_url(@invite), notice: "Invite was successfully created." }
         format.json { render :show, status: :created, location: @invite }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { redirect_to invite_url(group_id: @group.id), status: :unprocessable_entity }
         format.json { render json: @invite.errors, status: :unprocessable_entity }
       end
     end
@@ -51,10 +52,12 @@ class InvitesController < ApplicationController
 
   # DELETE /invites/1 or /invites/1.json
   def destroy
+    if params[:user_id] != -1
+      current_user.groups << @invite.invite_group
+    end
     @invite.destroy
-
     respond_to do |format|
-      format.html { redirect_to invites_url, notice: "Invite was successfully destroyed." }
+      format.html { redirect_to home_url(id: @group.id), notice: "Invite was successfully destroyed." }
       format.json { head :no_content }
     end
   end

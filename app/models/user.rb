@@ -40,4 +40,5 @@ class User < ActiveRecord::Base
 
     has_many :invites,foreign_key: :invite_user_id
     has_many :invite_groups ,through: :invites , source: :invite_group
+    has_many :create_users ,through: :invites , source: :create_user
   end

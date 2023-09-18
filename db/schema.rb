@@ -52,6 +52,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_14_134432) do
 
   create_table "invites", force: :cascade do |t|
     t.integer "invite_user_id"
+    t.integer "create_user_id"
     t.integer "invite_group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

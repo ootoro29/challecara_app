@@ -5,14 +5,28 @@
 <strong>メンバー</strong>
 <ul>
   <% @members.each do |user| %>
+    
     <% if !@group.admin_users.find_by(id: user.id).nil? %>
-      <li><%= user.name+"(管理者)" %></li>
+      <%= user.name+"(管理者)" %>
     <% else %>
-      <li><%= user.name %></li>
+      <%= user.name %>
     <% end %>
     <br>
   <% end %>
 </ul>
+
+<% if @invite.errors.any? %>
+  <div style="color: red">
+    <h2><%= pluralize(@invite.errors.count, "error") %> prohibited this group from being saved:</h2>
+
+    <ul>
+      <% @invite.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 
 <%= render 'invites/form' , invite: @invite %>
 
