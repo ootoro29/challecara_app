@@ -3,7 +3,7 @@
         <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
         <% if !@group.nil? %>
             <span class="fs-4"><%= link_to "グループ", groups_path(group_id: @group.id) ,class:"fs-4 text-dark" %></span>
-            <p><%= @group.name %></p>
+            <p><%= @group.name %>|<%= link_to "プライベートグループ", home_path ,class:"fs-6 text-dark" %></p>
         <% else %>
             <span class="fs-4"><%= link_to "グループ", groups_path ,class:"fs-4 text-dark" %></span>
             <p>プライベートグループ</p>
@@ -32,6 +32,7 @@
         <ul class="dropdown-menu text-small shadow">
             <li><a class="dropdown-item" href="#">プロフィール表示</a></li>
             <li><a class="dropdown-item" href="#">ユーザー設定</a></li>
+            <li><%= link_to "グループ招待", home_path(id: get_group_id ),class:"dropdown-item" %></li>
             <li><hr class="dropdown-divider"></li>
             <li><%= link_to "ログアウト", logout_path,data: { turbo_method: :delete },class:"dropdown-item" %></li>
         </ul>

@@ -10,6 +10,7 @@ class GroupsController < ApplicationController
   # GET /groups/1 or /groups/1.json
   def show
     @members = @group.users.all;
+    @invite = Invite.new
   end
 
   # GET /groups/new
@@ -85,4 +86,6 @@ class GroupsController < ApplicationController
         redirect_to login_url
       end
     end
+
+    
 end
