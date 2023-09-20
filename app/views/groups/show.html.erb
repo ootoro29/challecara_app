@@ -27,13 +27,15 @@
   </div>
 <% end %>
 
+<% if !@group.admin_users.find_by(id: current_user.id).nil? %>
+    <%= render 'invites/form' , invite: @invite %>      
+<% end %>
 
-<%= render 'invites/form' , invite: @invite %>
 
 <div>
-  <%= link_to "Edit this group", edit_group_path(@group) %> |
+  <% if !@group.admin_users.find_by(id: current_user.id).nil? %><%= link_to "Edit this group", edit_group_path(@group) %> |<% end %>
   <%= link_to "Back to groups", groups_path %> |
   <%= link_to "Select this group", home_path(id: @group.id) %>
-  <%= button_to "Destroy this group", @group, method: :delete %>
+  <% if !@group.admin_users.find_by(id: current_user.id).nil? %><%= button_to "Destroy this group", @group, method: :delete %><% end %>
 </div>
 

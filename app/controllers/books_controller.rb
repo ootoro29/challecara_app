@@ -1,7 +1,8 @@
 class BooksController < ApplicationController
   before_action :set_book, only: %i[ show edit update destroy ]
   before_action :logged_in_user
-  before_action :set_group, only: %i[ index show new edit update create]
+  before_action :set_group, only: %i[ index show]
+  before_action :set_admin_group, only: %i[ new edit update create]
 
   # GET /books or /books.json
   def index
@@ -66,6 +67,17 @@ class BooksController < ApplicationController
       @group = Group.find_by(id: params[:group_id])
       if @group.nil?
         redirect_to groups_path
+      end
+    end
+
+    def set_admin_group
+      @group = Group.find_by(id: params[:group_id])
+      if @group.nil?
+        redirect_to groups_path
+      end
+
+      if @group.admin_users.find_by(id: current_user.id).nil?
+        redirect_to home_path(id: @group.id)
       end
     end
 
