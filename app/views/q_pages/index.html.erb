@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Q pages</h1>
+
+<div id="q_pages">
+  <% @q_pages.each do |q_page| %>
+    <%= render q_page %>
+    <p>
+      <%= link_to "Show this q page", q_page %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New q page", new_q_page_path %>

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'users/new'
   root 'top_pages#top'
   get 'home' => 'home_pages#home'
+  put 'home' => 'home_pages#update'
   get 'home/:id' => 'home_pages#home'
   get 'signup' => 'users#new'
   get 'login' => 'sessions#new'
@@ -12,4 +13,5 @@ Rails.application.routes.draw do
   resources :groups
   resources :books, param: :group_id
   resources :invites, param: :group_id
+  resources :q_pages, param: :group_id 
 end

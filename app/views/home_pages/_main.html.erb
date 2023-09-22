@@ -1,4 +1,3 @@
-<h1>メインコンテンツ</h1>
 <% if @group.nil? %>
     <% @invites.each do |invite| %>
         <li>
@@ -6,5 +5,15 @@
         <%= link_to "O", invite_path(id: invite.id,group_id: invite.invite_group.id,user_id: current_user.id), data: { turbo_method: :delete }%>|
         <%= link_to "X", invite_path(id: invite.id,group_id: invite.invite_group.id,user_id: -1), data: { turbo_method: :delete }%>
         </li>
+    <% end %>
+<% else %>
+    <% if @book.nil?%>
+        <div><%= render 'group_top' %></div>
+    <% else %>
+        <% if @quest.nil?%>
+            <div><%= render 'page_list' %></div>
+        <% else %>
+            <div><%= render 'quest' ,quest:@quest%></div>
+        <% end %>
     <% end %>
 <% end %>

@@ -77,7 +77,7 @@ class BooksController < ApplicationController
       end
 
       if @group.admin_users.find_by(id: current_user.id).nil?
-        redirect_to home_path(id: @group.id)
+        redirect_to home_path(id: @group.id,book_id: @book.id)
       end
     end
 

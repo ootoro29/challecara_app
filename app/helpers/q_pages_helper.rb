@@ -1,0 +1,2 @@
+module QPagesHelper
+end
