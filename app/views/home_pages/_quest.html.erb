@@ -6,7 +6,8 @@
     <% result = "【未解決】" %>
 <% end %>
 <h4>作成者: <%= quest.writer.name %> | <%= result %></h4>
-
+<div><%= render 'message_list'%></div>
+<div><%= render 'message_form', page:quest ,type:0 %></div>
 
 <% if current_user.id == quest.writer.id %>
     <% if !quest.check %>

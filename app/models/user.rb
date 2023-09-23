@@ -44,4 +44,6 @@ class User < ActiveRecord::Base
 
     has_many :q_pages,foreign_key: :writer_id
     has_many :p_pages,foreign_key: :writer_id
+
+    has_many :messages,foreign_key: :writer_id
   end
