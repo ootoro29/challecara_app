@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_23_031720) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_23_112930) do
   create_table "administrators", force: :cascade do |t|
     t.integer "admin_user_id", null: false
     t.integer "admin_group_id", null: false
@@ -56,6 +56,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_23_031720) do
     t.integer "invite_group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "body"
+    t.integer "writer_id"
+    t.string "host_page_type"
+    t.integer "host_page_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["host_page_type", "host_page_id"], name: "index_messages_on_host_page"
   end
 
   create_table "p_pages", force: :cascade do |t|

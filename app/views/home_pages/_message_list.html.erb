@@ -1,0 +1,8 @@
+<% @messages.each do |message| %>
+
+    発言者:<%= message.writer.name %>|作成日時: <%= message.created_at.to_s(:datetime_jp)%><br>
+    <div style = "padding-left:1em;"><%= safe_join(message.body.split("\n"),tag(:br))%></div>
+    <br>
+    
+    
+<% end %>

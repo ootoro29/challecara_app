@@ -1,6 +1,7 @@
 <h1>Title:<%= point.title %></h1>
 <h4>作成者: <%= point.writer.name %></h4>
-
+<div><%= render 'message_list'%></div>
+<div><%= render 'message_form',page:point,type:1%></div>
 <% if current_user.id == point.writer.id %>
     <%= link_to point.book.name+" に戻る", home_path(id:@group.id,book_id:@book.id)%>
     <br>

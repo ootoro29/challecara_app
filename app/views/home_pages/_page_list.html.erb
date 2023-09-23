@@ -20,4 +20,5 @@
     </li>
     作成日時: <%= p_page.created_at.to_s(:datetime_jp)%><br>
     <%= link_to "この要点を見る", home_path(id:@group.id,book_id:@book.id,point_id: p_page.id)%>
+    
 <% end %>

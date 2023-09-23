@@ -37,6 +37,14 @@ class HomePagesController < ApplicationController
         @PPages = @book.p_pages;
         @quest = @book.q_pages.find_by(id: params[:quest_id])
         @point = @book.p_pages.find_by(id: params[:point_id])
+        if !@quest.nil? || !@point.nil?
+          @message = Message.new
+          if !@quest.nil?
+            @messages = @quest.messages
+          else
+            @messages = @point.messages
+          end
+        end
        end
     end
     @invites = current_user.invites

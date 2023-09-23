@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :messages
   get 'sessions/new'
   get 'users/new'
   root 'top_pages#top'
