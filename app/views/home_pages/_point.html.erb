@@ -1,0 +1,10 @@
+<h1>Title:<%= point.title %></h1>
+<h4>作成者: <%= point.writer.name %></h4>
+
+<% if current_user.id == point.writer.id %>
+    <%= link_to point.book.name+" に戻る", home_path(id:@group.id,book_id:@book.id)%>
+    <br>
+    <%= link_to "この要点を消す", p_page_path(id:point.id,group_id: @group.id,book_id: @book.id), data: { turbo_method: :delete }%>
+<% else %>
+    <%= link_to point.book.name+" に戻る", home_path(id:@group.id,book_id:@book.id)%>
+<% end %>

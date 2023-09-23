@@ -1,0 +1,23 @@
+<h1>Title:<%= quest.title %></h1>
+<% result = "" %>
+<% if quest.check %>
+    <% result = "【解決】" %>
+<% else %>
+    <% result = "【未解決】" %>
+<% end %>
+<h4>作成者: <%= quest.writer.name %> | <%= result %></h4>
+
+
+<% if current_user.id == quest.writer.id %>
+    <% if !quest.check %>
+        <%= link_to "解決", home_path(id:@group.id,book_id:@book.id,quest_id: quest.id,check: 1),data: { turbo_method: :put }%>
+    <% else %>
+        <%= link_to "未解決", home_path(id:@group.id,book_id:@book.id,quest_id: quest.id,check: 0),data: { turbo_method: :put }%>
+    <% end %>
+    |<%= link_to quest.book.name+" に戻る", home_path(id:@group.id,book_id:@book.id)%>
+    <br>
+    <br>
+    <%= link_to "この質問を消す", q_page_path(id:quest.id,group_id: @group.id,book_id: @book.id), data: { turbo_method: :delete }%>
+<% else %>
+    <%= link_to quest.book.name+" に戻る", home_path(id:@group.id,book_id:@book.id)%>
+<% end %>
