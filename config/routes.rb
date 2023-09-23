@@ -14,4 +14,5 @@ Rails.application.routes.draw do
   resources :books, param: :group_id
   resources :invites, param: :group_id
   resources :q_pages, param: :group_id 
+  resources :p_pages, param: :group_id 
 end

@@ -43,4 +43,5 @@ class User < ActiveRecord::Base
     has_many :create_users ,through: :invites , source: :create_user
 
     has_many :q_pages,foreign_key: :writer_id
+    has_many :p_pages,foreign_key: :writer_id
   end

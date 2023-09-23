@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_22_054549) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_23_031720) do
   create_table "administrators", force: :cascade do |t|
     t.integer "admin_user_id", null: false
     t.integer "admin_group_id", null: false
@@ -54,6 +54,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_22_054549) do
     t.integer "invite_user_id"
     t.integer "create_user_id"
     t.integer "invite_group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "p_pages", force: :cascade do |t|
+    t.string "title"
+    t.integer "book_id"
+    t.integer "writer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

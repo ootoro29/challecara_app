@@ -14,9 +14,10 @@
     <% else %>
         <%= link_to "未解決", home_path(id:@group.id,book_id:@book.id,quest_id: quest.id,check: 0),data: { turbo_method: :put }%>
     <% end %>
-    <br>
-    <%= link_to quest.book.name+" に戻る", home_path(id:@group.id,book_id:@book.id)%>
+    |<%= link_to quest.book.name+" に戻る", home_path(id:@group.id,book_id:@book.id)%>
     <br>
     <br>
     <%= link_to "この質問を消す", q_page_path(id:quest.id,group_id: @group.id,book_id: @book.id), data: { turbo_method: :delete }%>
+<% else %>
+    <%= link_to quest.book.name+" に戻る", home_path(id:@group.id,book_id:@book.id)%>
 <% end %>

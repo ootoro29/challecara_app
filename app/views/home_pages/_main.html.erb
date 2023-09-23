@@ -10,10 +10,12 @@
     <% if @book.nil?%>
         <div><%= render 'group_top' %></div>
     <% else %>
-        <% if @quest.nil?%>
+        <% if @quest.nil? && @point.nil? %>
             <div><%= render 'page_list' %></div>
-        <% else %>
+        <% elsif !@quest.nil? %>
             <div><%= render 'quest' ,quest:@quest%></div>
+        <% elsif !@point.nil? %>
+            <div><%= render 'point' ,point:@point%></div>
         <% end %>
     <% end %>
 <% end %>

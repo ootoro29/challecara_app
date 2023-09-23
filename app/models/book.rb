@@ -4,4 +4,5 @@ class Book < ApplicationRecord
     belongs_to :group
 
     has_many :q_pages,foreign_key: :book_id
+    has_many :p_pages,foreign_key: :book_id
 end

@@ -34,7 +34,9 @@ class HomePagesController < ApplicationController
        @members = @group.users;
        if !@book.nil?
         @QPages = @book.q_pages;
+        @PPages = @book.p_pages;
         @quest = @book.q_pages.find_by(id: params[:quest_id])
+        @point = @book.p_pages.find_by(id: params[:point_id])
        end
     end
     @invites = current_user.invites
