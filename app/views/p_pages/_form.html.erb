@@ -1,0 +1,33 @@
+<%= form_with(model: p_page) do |form| %>
+  <% if p_page.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(p_page.errors.count, "error") %> prohibited this p_page from being saved:</h2>
+
+      <ul>
+        <% p_page.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.hidden_field :book_id, :value => @book.id %>
+  </div>
+
+  <div>
+    <%= form.hidden_field :writer_id, :value => current_user.id %>
+  </div>
+
+  <%= hidden_field_tag :group_id, @group.id %>
+  <%= hidden_field_tag :book_id, @book.id %>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

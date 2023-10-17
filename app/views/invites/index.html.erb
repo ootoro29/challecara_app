@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Invites</h1>
+
+<div id="invites">
+  <% @invites.each do |invite| %>
+    <%= render invite %>
+    <p>
+      <%= link_to "Show this invite", invite %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New invite", new_invite_path %>

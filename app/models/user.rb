@@ -37,4 +37,13 @@ class User < ActiveRecord::Base
 
     has_many :admins,foreign_key: :admin_user_id
     has_many :admin_groups ,through: :admins , source: :admin_group
+
+    has_many :invites,foreign_key: :invite_user_id
+    has_many :invite_groups ,through: :invites , source: :invite_group
+    has_many :create_users ,through: :invites , source: :create_user
+
+    has_many :q_pages,foreign_key: :writer_id
+    has_many :p_pages,foreign_key: :writer_id
+
+    has_many :messages,foreign_key: :writer_id
   end

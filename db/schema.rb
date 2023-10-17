@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_14_025508) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_23_112930) do
   create_table "administrators", force: :cascade do |t|
     t.integer "admin_user_id", null: false
     t.integer "admin_group_id", null: false
@@ -48,6 +48,41 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_14_025508) do
     t.datetime "updated_at", null: false
     t.index ["group_id"], name: "index_groups_users_on_group_id"
     t.index ["user_id"], name: "index_groups_users_on_user_id"
+  end
+
+  create_table "invites", force: :cascade do |t|
+    t.integer "invite_user_id"
+    t.integer "create_user_id"
+    t.integer "invite_group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "body"
+    t.integer "writer_id"
+    t.string "host_page_type"
+    t.integer "host_page_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["host_page_type", "host_page_id"], name: "index_messages_on_host_page"
+  end
+
+  create_table "p_pages", force: :cascade do |t|
+    t.string "title"
+    t.integer "book_id"
+    t.integer "writer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "q_pages", force: :cascade do |t|
+    t.string "title"
+    t.integer "book_id"
+    t.integer "writer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "check", default: false, null: false
   end
 
   create_table "users", force: :cascade do |t|
