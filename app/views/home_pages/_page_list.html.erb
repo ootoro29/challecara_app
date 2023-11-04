@@ -6,6 +6,8 @@
     <% else%>
         【未解決】
     <% end%>
+    作成日 <%= q_page.created_at.to_s(:datetime_jp)%>
+    <%= link_to "この質問を見る", home_path(id:@group.id,book_id:@book.id,quest_id: q_page.id)%>
     <table border="1" width="90%">
         <tr>
             <td><%=q_page.title%></td>
