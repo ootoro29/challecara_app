@@ -26,14 +26,14 @@
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
         <% if !@group.nil? %>
-            <span class="fs-4"><%= link_to "Book", new_book_path(group_id: @group.id) ,class:"fs-4 text-dark" %></span>
+            <span class="fs-4"><%= link_to "Book", group_books_path(@group) ,class:"fs-4 text-dark" %></span>
         <% end %>
         <% if !@group.nil? %>
             <ul>
             <% @books.each do |book| %>
                 <li>
-                <%= link_to book.name, home_path(id: @group.id,book_id: book.id) ,class:"fs-6 text-dark"%>
-                <%= link_to "Edit", edit_book_path(id:book.id,group_id: @group.id) ,class:"fs-8 text-dark"%>
+                <%= link_to book.name, group_book_path(@group,book) ,class:"fs-6 text-dark"%>
+                <%= link_to "Edit", edit_group_book_path(@group,book) ,class:"fs-8 text-dark"%>
                 </li>
             <% end %>
             </ul>

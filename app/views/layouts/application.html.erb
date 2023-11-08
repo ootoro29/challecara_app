@@ -8,25 +8,34 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
-
-    <script>
-      MathJax = {
-        tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']]
-        }, 
-        svg: {
-          fontCache: 'global'
-        }
-      };
-    </script>
-    <script type="text/javascript" id="MathJax-script" async
-      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
-    </script>
-
-    
   </head>
 
   <body>
-    <%= yield %>
+  <script>
+    MathJax = {
+      tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }, 
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+  </script>
+  <div class="contents">
+    <% if logged_in? %>
+        <div class="sidebar">
+            <div><%= render 'shared/side' %></div>
+        </div>
+      <div class="main-content">
+        <%= yield %>
+      </div>
+    <% else %>
+      <%= yield %>
+    <% end %>
+  </div>    
+    
   </body>
 </html>

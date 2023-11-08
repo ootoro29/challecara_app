@@ -10,6 +10,13 @@ class QPagesController < ApplicationController
 
   # GET /q_pages/1 or /q_pages/1.json
   def show
+    @message = Message.new
+    if !@q_page.nil? && !params[:check].nil?
+      if @q_page.writer.id == current_user.id
+        @q_page.update(check:params[:check]) 
+        redirect_to group_book_q_page_path(@group,@book,@q_page)
+      end
+    end
   end
 
   # GET /q_pages/new
@@ -27,7 +34,7 @@ class QPagesController < ApplicationController
 
     respond_to do |format|
       if @q_page.save
-        format.html { redirect_to q_page_url(@q_page), notice: "Q page was successfully created." }
+        format.html { redirect_to group_book_q_page_url(@group,@book,@q_page), notice: "Q page was successfully created." }
         format.json { render :show, status: :created, location: @q_page }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -40,7 +47,7 @@ class QPagesController < ApplicationController
   def update
     respond_to do |format|
       if @q_page.update(q_page_params)
-        format.html { redirect_to q_page_url(@q_page), notice: "Q page was successfully updated." }
+        format.html { redirect_to group_book_q_page_url(@group,@book,@q_page), notice: "Q page was successfully updated." }
         format.json { render :show, status: :ok, location: @q_page }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -54,7 +61,7 @@ class QPagesController < ApplicationController
     @q_page.destroy
 
     respond_to do |format|
-      format.html { redirect_to home_path(id:@group.id,book_id:@book.id), notice: "Q page was successfully destroyed." }
+      format.html { redirect_to group_book_url(@group,@book), notice: "Q page was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -65,6 +72,7 @@ class QPagesController < ApplicationController
       if @group.nil?
         redirect_to groups_path
       end
+      @books = @group.books
     end
 
     def set_book
@@ -76,7 +84,8 @@ class QPagesController < ApplicationController
 
     # Use callbacks to share common setup or constraints between actions.
     def set_q_page
-      @q_page = QPage.find(params[:id])
+      @q_page = QPage.find_by(id: params[:id])
+      @messages = @q_page.messages
     end
 
     # Only allow a list of trusted parameters through.

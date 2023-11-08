@@ -36,13 +36,17 @@ class MessagesController < ApplicationController
     respond_to do |format|
       if saved
         if params[:page_type] == "0"
-          format.html { redirect_to home_url(id:@group.id,book_id:@book.id,quest_id:params[:page_id]), notice: "Message was successfully created." }
+          format.html { redirect_to group_book_q_page_path(@group,@book,@quest), notice: "Message was successfully created." }
         elsif params[:page_type] == "1"
-          format.html { redirect_to home_url(id:@group.id,book_id:@book.id,point_id:params[:page_id]), notice: "Message was successfully created." }
+          format.html { redirect_to group_book_p_page_path(@group,@book,@point), notice: "Message was successfully created." }
         end
         format.json { render :show, status: :created, location: @message }
       else
-        format.html { redirect_to home_url(id:@group.id,book_id:@book.id,page_id:params[:page_id]), status: :unprocessable_entity }
+        if params[:page_type] == "0"
+          format.html { redirect_to group_book_q_pages_path(@group,@book), status: :unprocessable_entity }
+        elsif params[:page_type] == "1"
+          format.html { redirect_to group_book_p_pages_path(@group,@book), notice: "Message was successfully created." }
+        end
         format.json { render json: @message.errors, status: :unprocessable_entity }
       end
     end
