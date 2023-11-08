@@ -1,4 +1,4 @@
-<%= form_with(model: p_page) do |form| %>
+<%= form_with(model: [group,book,p_page]) do |form| %>
   <% if p_page.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(p_page.errors.count, "error") %> prohibited this p_page from being saved:</h2>

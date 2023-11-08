@@ -6,6 +6,8 @@
     <% else%>
         【未解決】
     <% end%>
+    作成日 <%= q_page.created_at.to_s(:datetime_jp)%>
+    <%= link_to "この質問を見る", home_path(id:@group.id,book_id:@book.id,quest_id: q_page.id)%>
     <table border="1" width="90%">
         <tr>
             <td><%=q_page.title%></td>
@@ -16,7 +18,7 @@
 <div><span class="fs-2">要点|</span><%= link_to "要点を投稿する", new_p_page_path(group_id:@group.id,book_id:@book.id)%></div>
 <% @PPages.each do |p_page| %>
     作成者:<%= @members.find_by(id: p_page.writer_id).name %>
-    <div class="card" style="width: 13rem">
+    <div class="card" style="width: 20rem">
         <img class="card-img-top" src="https://github.com/mdo.png" alt="">
         <div class="card-body">
                 <h5 class="card-title"><%=p_page.title%></h5>

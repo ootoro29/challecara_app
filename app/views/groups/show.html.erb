@@ -2,6 +2,7 @@
 
 <%= render @group %>
 
+
 <strong>メンバー</strong>
 <ul>
   <% @members.each do |user| %>
@@ -34,8 +35,7 @@
 
 <div>
   <% if !@group.admin_users.find_by(id: current_user.id).nil? %><%= link_to "Edit this group", edit_group_path(@group) %> |<% end %>
-  <%= link_to "Back to groups", groups_path %> |
-  <%= link_to "Select this group", home_path(id: @group.id) %>
+  <%= link_to "Back to groups", groups_path %>
   <% if !@group.admin_users.find_by(id: current_user.id).nil? %><%= button_to "Destroy this group", @group, method: :delete %><% end %>
 </div>
 

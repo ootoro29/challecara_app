@@ -1,9 +1,9 @@
 <h1>New book</h1>
 
-<%= render "form", book: @book %>
+<%= render "form",group:@group, book: @book %>
 
 <br>
 
 <div>
-  <%= link_to "Back to home", home_path(id: @group.id) %>
+  <%= link_to "Back to books", group_books_path %>
 </div>
