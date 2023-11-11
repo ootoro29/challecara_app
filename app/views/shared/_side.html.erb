@@ -9,14 +9,12 @@
                         <strong><%= @group.name %></strong>
                     </a>
                     <ul class="dropdown-menu">
-                        <li>
-                            <%= link_to image_tag('https://github.com/mdo.png', size:"50x50"), group_path(@group)%>
-                            <strong><%= @group.name %></strong>
-                        </li>
-                        <li>
-                            <%= link_to image_tag('https://github.com/mdo.png', size:"50x50"), group_path(@group)%>
-                            <strong><%= @group.name %></strong>
-                        </li>
+                        <% @groups.each do |group| %>
+                            <li>
+                                <%= link_to image_tag('https://github.com/mdo.png', size:"50x50"), group_path(group)%>
+                                <strong><%= group.name %></strong>
+                            </li>
+                        <% end %>
                     </ul>
                 </div>
             <% else %>

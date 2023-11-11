@@ -1,5 +1,6 @@
 class HomePagesController < ApplicationController
   before_action :logged_in_user
+  before_action :set_groups
   before_action :set
   def home
 
@@ -19,13 +20,9 @@ class HomePagesController < ApplicationController
   end
 
   private
-  def logged_in_user
-    unless logged_in?
-      flash[:danger] = "Please log in."
-      redirect_to login_url
-    end
+  def set_groups
+    @groups = current_user.groups
   end
-
   def set
     @group = current_user.groups.find_by(id: params[:id])
     if !@group.nil?
