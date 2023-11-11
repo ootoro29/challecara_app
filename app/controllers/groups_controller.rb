@@ -5,7 +5,7 @@ class GroupsController < ApplicationController
 
   # GET /groups or /groups.json
   def index
-    
+
   end
 
   # GET /groups/1 or /groups/1.json
@@ -17,6 +17,7 @@ class GroupsController < ApplicationController
   # GET /groups/new
   def new
     @group = Group.new
+    @group.name = "新しいグループ"
   end
 
   # GET /groups/1/edit
