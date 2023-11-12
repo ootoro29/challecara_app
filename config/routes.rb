@@ -11,9 +11,16 @@ Rails.application.routes.draw do
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
   resources :users
-  resources :groups
-  resources :books, param: :group_id
+resources :groups
+  #resources :books, param: :group_id
+  #scope: 'group' do
+    #resources :books
+  #end
+  resources :groups do
+    resources :books do
+      resources :q_pages 
+      resources :p_pages
+    end
+  end
   resources :invites, param: :group_id
-  resources :q_pages, param: :group_id 
-  resources :p_pages, param: :group_id 
 end

@@ -1,18 +1,8 @@
-
-
-<div class="contents">
-    <!-- サイドバー -->
-    <div class="sidebar">
-        <div><%= render 'side' %></div>
-    </div>
-    
-    <!-- メインコンテンツ -->
-    <div class="main-content">
-        <div><%= render 'main' %></div>
-    </div>
-</div>
-
-
-
-
-
+<p>Invite List</p>
+<% @invites.each do |invite| %>
+    <li>
+    <%=invite.create_user.name%>(user_id:<%=invite.create_user.id%>)から<%=invite.invite_group.name%>に招待されました。
+    <%= link_to "O", invite_path(id: invite.id,group_id: invite.invite_group.id,user_id: current_user.id), data: { turbo_method: :delete }%>|
+    <%= link_to "X", invite_path(id: invite.id,group_id: invite.invite_group.id,user_id: -1), data: { turbo_method: :delete }%>
+    </li>
+<% end %>

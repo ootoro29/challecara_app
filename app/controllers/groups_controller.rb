@@ -70,6 +70,7 @@ class GroupsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_group
       @group = Group.find_by(id: params[:id])
+      @books = @group.books
       if @group.nil?
         redirect_to groups_path
       end

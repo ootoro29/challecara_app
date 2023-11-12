@@ -10,6 +10,13 @@ class PPagesController < ApplicationController
 
   # GET /p_pages/1 or /p_pages/1.json
   def show
+    @message = Message.new
+    if !@q_page.nil? && !params[:check].nil?
+      if @q_page.writer.id == current_user.id
+        @q_page.update(check:params[:check]) 
+        redirect_to group_book_q_page_path(@group,@book,@q_page)
+      end
+    end
   end
 
   # GET /p_pages/new
@@ -27,7 +34,7 @@ class PPagesController < ApplicationController
 
     respond_to do |format|
       if @p_page.save
-        format.html { redirect_to p_page_url(@p_page), notice: "P page was successfully created." }
+        format.html { redirect_to group_book_p_page_url(@group,@book,@p_page), notice: "P page was successfully created." }
         format.json { render :show, status: :created, location: @p_page }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -40,7 +47,7 @@ class PPagesController < ApplicationController
   def update
     respond_to do |format|
       if @p_page.update(p_page_params)
-        format.html { redirect_to p_page_url(@p_page), notice: "P page was successfully updated." }
+        format.html { redirect_to group_book_p_page_url(@group,@book,@p_page), notice: "P page was successfully updated." }
         format.json { render :show, status: :ok, location: @p_page }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -54,7 +61,7 @@ class PPagesController < ApplicationController
     @p_page.destroy
 
     respond_to do |format|
-      format.html { redirect_to p_pages_url, notice: "P page was successfully destroyed." }
+      format.html { redirect_to group_book_url(@group,@book), notice: "P page was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -66,6 +73,7 @@ class PPagesController < ApplicationController
       if @group.nil?
         redirect_to groups_path
       end
+      @books = @group.books
     end
 
     def set_book
@@ -77,7 +85,8 @@ class PPagesController < ApplicationController
 
     # Use callbacks to share common setup or constraints between actions.
     def set_p_page
-      @p_page = PPage.find(params[:id])
+      @p_page = PPage.find_by(id: params[:id])
+      @messages = @p_page.messages
     end
 
     # Only allow a list of trusted parameters through.

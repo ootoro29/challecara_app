@@ -1,10 +1,33 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @q_page %>
+<h1>Title:<%= @q_page.title %></h1>
+<% result = "" %>
+<% if @q_page.check %>
+    <% result = "【解決】" %>
+<% else %>
+    <% result = "【未解決】" %>
+<% end %>
+<h4>作成者: <%= @q_page.writer.name %> | <%= result %></h4>
+<div><%= render 'shared/message_list'%></div>
+<div><%= render 'shared/message_form', page:@q_page ,type:0 %></div>
+
+<% if current_user.id == @q_page.writer.id %>
+    <% if !@q_page.check %>
+    <%= link_to "解決", group_book_q_page_path(@group,@book,@q_page,check: true)%>
+    <% else %>
+    <%= link_to "未解決", group_book_q_page_path(@group,@book,@q_page,check: false)%>
+    <% end %>
+    <%= link_to @q_page.book.name+" に戻る", group_book_path(@group,@book)%>
+    <br>
+    <br>
+    <%= link_to "この質問を消す", group_book_q_page_path(@group,@book,@q_page), data: { turbo_method: :delete }%>
+<% else %>
+    <%= link_to @q_page.book.name+" に戻る", group_book_path(@group,@book)%>
+<% end %>
 
 <div>
-  <%= link_to "Edit this q page", edit_q_page_path(@q_page) %> |
-  <%= link_to "Back to q pages", q_pages_path %>
+  <%= link_to "Edit this q page", edit_group_book_q_page_path(@group,@book,@q_page) %> |
+  <%= link_to "Back to q pages", group_book_q_pages_path(@group,@book) %>
 
-  <%= button_to "Destroy this q page", @q_page, method: :delete %>
+  <%= button_to "Destroy this q page", group_book_q_page_path(@group,@book,@q_page), method: :delete %>
 </div>

@@ -1,10 +1,13 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @p_page %>
-
-<div>
-  <%= link_to "Edit this p page", edit_p_page_path(@p_page) %> |
-  <%= link_to "Back to p pages", p_pages_path %>
-
-  <%= button_to "Destroy this p page", @p_page, method: :delete %>
-</div>
+<h1>Title:<%= @p_page.title %></h1>
+<h4>作成者: <%= @p_page.writer.name %></h4>
+<div><%= render 'shared/message_list'%></div>
+<div><%= render 'shared/message_form',page:@p_page,type:1%></div>
+<% if current_user.id == @p_page.writer.id %>
+    <%= link_to @p_page.book.name+" に戻る", group_book_path(@group,@book)%>
+    <br>
+    <%= link_to "この要点を消す", group_book_p_page_path, data: { turbo_method: :delete }%>
+<% else %>
+    <%= link_to @p_page.book.name+" に戻る", group_book_path(@group,@book)%>
+<% end %>
