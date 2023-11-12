@@ -1,6 +1,9 @@
 <!-- ログイン前のページ -->
-<h1>WhyWhy</h1>
-<p>ログイン前のページ</p>
-<%= link_to "sign up", signup_path %>
-<%= link_to "log in", login_path %>
-
+<div class="bf-login">
+    <div class="bf-login_main">
+        <h1>WhyWhy</h1>
+        <p>学習内容の理解を共有する勉強会アプリ</p>
+        <%= link_to "sign up", signup_path, class: 'btn btn-outline-light' %>
+        <%= link_to "log in", login_path, class: 'btn btn-outline-light' %>
+    </div>
+</div>

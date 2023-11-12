@@ -60,4 +60,39 @@ input {
     padding-left: 10px;
     white-space: nowrap;
 }
-  
+
+/* ログイン前 */
+.bf-login{
+    display: grid;
+    grid-template-columns: 100vw;
+    grid-template-rows: 100vh;
+
+    background-color: rgb(93, 114, 182);
+}
+.bf-login_main{
+    width: 100%;
+    max-width: 1280px;
+    margin: auto;
+    text-align: center;
+    color: #f0f0f0;
+}
+
+/* signup,loginフォーム中央揃え */
+.form-align-center{
+    display: grid;
+    grid-template-columns: 100vw;
+    grid-template-rows: 100vh;
+}
+.form-align-center_main{
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+}
+
+/* メインコンテンツ上部、ページの階層表示 */
+.breadcrumb{
+    ol{
+        font-size: 24px;
+    }
+}
