@@ -46,7 +46,7 @@ class MessagesController < ApplicationController
         if params[:page_type] == "0"
           format.html { redirect_to group_book_q_pages_path(@group,@book), status: :unprocessable_entity }
         elsif params[:page_type] == "1"
-          format.html { redirect_to group_book_p_pages_path(@group,@book), notice: "Message was successfully created." }
+          format.html { redirect_to group_book_p_pages_path(@group,@book), status: :unprocessable_entity }
         end
         format.json { render json: @message.errors, status: :unprocessable_entity }
       end
@@ -84,7 +84,7 @@ class MessagesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def message_params
-      params.require(:message).permit(:body, :writer_id)
+      params.require(:message).permit(:body, :writer_id,images: [])
     end
 
     def set_group

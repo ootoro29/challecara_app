@@ -14,6 +14,9 @@
   <div>
     <%= form.label :body, style: "display: block" %>
     <%= form.text_area :body %>
+
+    <%= form.label :images, style: "display: block" %>
+    <%= form.file_field :images,multiple: true %>
   </div>
 
   <div>
