@@ -1,6 +1,7 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: %i[ show edit update destroy ]
   before_action :logged_in_user
+  before_action :set_groups
+  before_action :set_book, only: %i[ show edit update destroy ]
   before_action :set_group, only: %i[ index show new destroy edit]
   before_action :set_admin_group, only: %i[ new edit update create]
 
@@ -64,6 +65,9 @@ class BooksController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_groups
+      @groups = current_user.groups
+    end
     def set_group
       @group = Group.find_by(id: params[:group_id])
       if @group.nil?
@@ -90,12 +94,5 @@ class BooksController < ApplicationController
     # Only allow a list of trusted parameters through.
     def book_params
       params.require(:book).permit(:name)
-    end
-
-    def logged_in_user
-      unless logged_in?
-        flash[:danger] = "Please log in."
-        redirect_to login_url
-      end
     end
 end

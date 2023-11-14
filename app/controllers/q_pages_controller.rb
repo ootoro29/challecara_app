@@ -1,4 +1,6 @@
 class QPagesController < ApplicationController
+  before_action :logged_in_user
+  before_action :set_groups
   before_action :set_q_page, only: %i[ show edit update destroy ]
   before_action :set_group, only: %i[ index show new edit update create destroy]
   before_action :set_book, only: %i[ index show new edit update create destroy]
@@ -67,6 +69,10 @@ class QPagesController < ApplicationController
   end
 
   private
+    def set_groups
+      @groups = current_user.groups
+    end
+    
     def set_group
       @group = Group.find_by(id: params[:group_id])
       if @group.nil?

@@ -1,4 +1,5 @@
 class InvitesController < ApplicationController
+  before_action :logged_in_user
   before_action :set_invite, only: %i[ show edit update destroy ]
   before_action :set_group, only: %i[ show edit update destroy create]
 
@@ -63,6 +64,9 @@ class InvitesController < ApplicationController
   end
 
   private
+  def set_groups
+    @groups = current_user.groups
+  end
     # Use callbacks to share common setup or constraints between actions.
     def set_invite
       @invite = Invite.find(params[:id])

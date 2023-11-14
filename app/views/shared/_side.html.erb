@@ -1,32 +1,31 @@
 <div class="vh-100 d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary">
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
         <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
-        <% if !@group.nil? %>
-            <% if !@group.id.nil? %>
-                <div class="dropdown">
-                    <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-                        <strong><%= @group.name %></strong>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <%= link_to image_tag('https://github.com/mdo.png', size:"50x50"), group_path(@group)%>
-                            <strong><%= @group.name %></strong>
-                        </li>
-                        <li>
-                            <%= link_to image_tag('https://github.com/mdo.png', size:"50x50"), group_path(@group)%>
-                            <strong><%= @group.name %></strong>
-                        </li>
-                    </ul>
-                </div>
+        <div class="dropdown">
+            <% if !@group.nil? %>
+                <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                    <strong><%= @group.name %></strong>
+                </a>
             <% else %>
-                <span class="fs-4"><%= link_to "グループ", groups_path ,class:"fs-4 text-dark" %></span>
-                <p>プライベートグループ</p>
+                <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                    <strong>プライベートグループ</strong>
+                </a>
             <% end %>
-        <% else %>
-            <span class="fs-4"><%= link_to "グループ", groups_path ,class:"fs-4 text-dark" %></span>
-            <p>プライベートグループ</p>
-        <% end %>
+            <ul class="dropdown-menu">
+                <% @groups.each do |group| %>
+                    <li>
+                        <%= link_to image_tag('https://github.com/mdo.png', size:"50x50"), group_path(group)%>
+                        <strong><%= group.name %></strong>
+                    </li>
+                <% end %>
+                <li>
+                    <%= link_to image_tag('https://github.com/mdo.png', size:"50x50"), new_group_path%>
+                    <strong>グループの追加</strong>
+                </li>
+            </ul>
+        </div>
     </a>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
