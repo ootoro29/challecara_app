@@ -1,25 +1,42 @@
 <!DOCTYPE html>
 <html>
   <head>
+  
     <title>ChallecaraApp</title>
+    
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    
   </head>
 
   <body>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+      window.addEventListener('load', function() {
+        let target = document.getElementById('main');
+        target.scrollTo(0, target.scrollHeight);
+      })
+      $(document).ready(()=> {
+        let target = document.getElementById('main');
+        target.scrollTo(0, target.scrollHeight);
+
+        MathJax = {
+          tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+          }, 
+          svg: {
+            fontCache: 'global'
+          }
+        };
+
+      })
+    </script>
   <script>
-    MathJax = {
-      tex: {
-      inlineMath: [['$', '$'], ['\\(', '\\)']]
-      }, 
-      svg: {
-        fontCache: 'global'
-      }
-    };
+    
   </script>
   <script type="text/javascript" id="MathJax-script" async
     src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
@@ -29,7 +46,7 @@
         <div class="sidebar">
             <div><%= render 'shared/side' %></div>
         </div>
-      <div class="main-content">
+      <div class="main-content" id = 'main'>
         <%= yield %>
       </div>
     <% else %>

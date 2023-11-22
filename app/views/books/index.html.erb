@@ -11,4 +11,7 @@
   <% end %>
 </div>
 
-<%= link_to "Bookの追加", new_group_book_path(@group) %>
+<% if !@group.admin_users.find_by(id: current_user.id).nil? %>
+  <%= link_to "Bookの追加", new_group_book_path(@group) %>
+<% end %>
+

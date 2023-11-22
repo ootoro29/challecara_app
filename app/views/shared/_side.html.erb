@@ -36,7 +36,9 @@
                 <% @books.each do |book| %>
                     <li>
                     <%= link_to book.name, group_book_path(@group,book) ,class:"fs-6 text-dark"%>
-                    <%= link_to "Edit", edit_group_book_path(@group,book) ,class:"fs-8 text-dark"%>
+                    <% if !@group.admin_users.find_by(id: current_user.id).nil? %>
+                        <%= link_to "Edit", edit_group_book_path(@group,book) ,class:"fs-8 text-dark"%>
+                    <% end %>
                     </li>
                 <% end %>
                 </ul>
@@ -52,7 +54,7 @@
         <ul class="dropdown-menu text-small shadow">
             <li><a class="dropdown-item" href="#">プロフィール表示</a></li>
             <li><a class="dropdown-item" href="#">ユーザー設定</a></li>
-            <li><%= link_to "グループ招待", home_path(id: get_group_id ),class:"dropdown-item" %></li>
+            <li><%= link_to "グループ招待", home_path,class:"dropdown-item" %></li>
             <li><hr class="dropdown-divider"></li>
             <li><%= link_to "ログアウト", logout_path,data: { turbo_method: :delete },class:"dropdown-item" %></li>
         </ul>

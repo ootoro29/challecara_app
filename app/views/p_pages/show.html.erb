@@ -7,6 +7,8 @@
 <% if current_user.id == @p_page.writer.id %>
     <%= link_to @p_page.book.name+" に戻る", group_book_path(@group,@book)%>
     <br>
+    <%= link_to "この要点を編集する", edit_group_book_p_page_path%>
+    <br>
     <%= link_to "この要点を消す", group_book_p_page_path, data: { turbo_method: :delete }%>
 <% else %>
     <%= link_to @p_page.book.name+" に戻る", group_book_path(@group,@book)%>
