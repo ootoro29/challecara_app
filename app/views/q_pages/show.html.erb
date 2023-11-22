@@ -17,17 +17,13 @@
     <% else %>
     <%= link_to "未解決", group_book_q_page_path(@group,@book,@q_page,check: false)%>
     <% end %>
+    <br>
     <%= link_to @q_page.book.name+" に戻る", group_book_path(@group,@book)%>
     <br>
+    <%= link_to "この質問を編集する", edit_group_book_q_page_path(@group,@book,@q_page) %> 
     <br>
     <%= link_to "この質問を消す", group_book_q_page_path(@group,@book,@q_page), data: { turbo_method: :delete }%>
 <% else %>
     <%= link_to @q_page.book.name+" に戻る", group_book_path(@group,@book)%>
 <% end %>
 
-<div>
-  <%= link_to "Edit this q page", edit_group_book_q_page_path(@group,@book,@q_page) %> |
-  <%= link_to "Back to q pages", group_book_q_pages_path(@group,@book) %>
-
-  <%= button_to "Destroy this q page", group_book_q_page_path(@group,@book,@q_page), method: :delete %>
-</div>

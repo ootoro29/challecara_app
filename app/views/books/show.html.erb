@@ -32,10 +32,9 @@
 <% end %>
 
 
-
-
-<div>
-  <%= link_to "Edit this book", edit_group_book_path(@group,@book) %>
-
-  <%= button_to "Destroy this book", group_book_path(@group,@book), method: :delete %>
-</div>
+<% if !@group.admin_users.find_by(id: current_user.id).nil? %>
+    <div>
+    <%= link_to "Edit this book", edit_group_book_path(@group,@book) %>
+    <%= button_to "Destroy this book", group_book_path(@group,@book), method: :delete %>
+    </div>
+<% end %>
