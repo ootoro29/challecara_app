@@ -59,6 +59,8 @@ input {
     background-color: #ffffff;
     padding-left: 10px;
     white-space: nowrap;
+    height: 100vh;
+    overflow-y: scroll;
 }
 
 /* ログイン前 */
@@ -95,4 +97,7 @@ input {
     ol{
         font-size: 24px;
     }
+}
+.image{
+    width: 500px;
 }
